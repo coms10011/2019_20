@@ -1,0 +1,40 @@
+
+\ifind
+\section*{Summary}
+\else
+\subsection*{1 Probability theory}
+\fi
+
+\begin{itemize}
+\item A \textbf{sample space} is a set of point, they are the possible \textbf{outcomes} of a \textbf{trial}.
+\item An \textbf{event} is a subset of a sample space.
+\item A \textbf{probability} is a map from events to real numbers such that
+  \begin{enumerate}
+    \item $P(A)\ge 0$ for all events.
+    \item $P(X)=1$
+    \item If $A\cap B=\emptyset$ for two events $A$ and $B$ then 
+      \begin{equation}
+        P(A\cup B)=P(A)+P(B)
+      \end{equation}
+\end{enumerate}
+\item A \textbf{probability mass function} is a map from points in the sample space to real numbers such that
+  \begin{enumerate}
+\item $p(x)\ge 0$ for all $x\in X$
+\item $\sum_{x\in X} p(x)=1$
+  \end{enumerate}
+\item $P(A)=\sum_{x\in A}p(x)$
+\item If all the points in a sample space have the same probability then
+  \begin{equation}
+P(A)=\frac{\mbox{number of points in }A}{\mbox{number of points in }X}=\frac{\#(A)}{\#{X}}
+  \end{equation}
+  where $\#(A)$ means the number of points in $A$.
+  \item The \textbf{binomial coefficient}
+\begin{equation}
+\left(\begin{array}{c}n\\r\end{array}\right)=\frac{n!}{r!(n-r)!}
+\end{equation}
+counts the number of subsets of size $r$ in a set of $n$ objects and 
+\begin{equation}
+n!=n\times (n-1)\times (n-2)\times \ldots \times 2 \times 1
+\end{equation}
+\end{itemize}
+
