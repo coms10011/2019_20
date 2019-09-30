@@ -1,0 +1,24 @@
+
+\ifind
+\section*{Example question}
+\else
+\subsection*{1 Probability theory - example question}
+\fi
+
+A rich man has six gold coins he splits into three piles randomly, so
+that each pile has at least one coin. The first pile he gives to his
+daughter, the second to his son and the third he throws in the lake
+for good luck. What chance does the daughter have of getting three or more coins.
+
+\noindent \textbf{solution} The sample space is made up of all possible divisions in piles
+\begin{eqnarray}
+  X&=&\{(4,1,1),(3,2,1),(3,1,2),(2,3,1),(2,1,3),\cr &&(2,2,2),(1,4,1),(1,1,4),(1,3,2),(1,2,3)\}
+\end{eqnarray}
+The event that the daughter gets at least three coints is
+\begin{equation}
+  E=\{(4,1,1),(3,2,1),(3,1,2)\}
+\end{equation}
+If all divisions are equally likely
+\begin{equation}
+  P(E)=\frac{\#E}{\#X}=\frac{3}{10}
+\end{equation}
