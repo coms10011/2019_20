@@ -1,0 +1,205 @@
+%1_probability.tex
+%notes for the course Probability and Statistics COMS10011 
+%taught at the University of Bristol
+%2018_19 Conor Houghton conor.houghton@bristol.ac.uk
+
+%To the extent possible under law, the author has dedicated all copyright 
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+
+\newif\ifind
+\indtrue
+
+
+
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{\texttt{coms10011.github.io}}
+\lhead{COMS100011 2\_conditional\_probability - Conor}
+\begin{document}
+
+\section*{The Monty Hall Problem}
+
+The Monty Hall problem has become too much of a classic, it is taught
+so often students sometimes get tired of hearing about it. It became
+well known in 1990 when Marilyn von Savant, an author who had a puzzle
+column in Parade magazine, wrote about the problem. Thousands of irate
+and misguided men wrote to incorrectly point out errors in what she
+had written, as such it The Monty Hall problem teaches us about the
+behaviour of irate men as well as statistics. It even features in Ian
+McEwan's novel Sweet Tooth. As such we won't look at the solution to
+the problem, instead I will describe the problem and you can work it
+out yourselves, one way to approach the solution is to use conditional
+probability, the subject of this set of notes.
+
+The Monty Hall problem is based on a game show \lq{}Let's make a
+deal\rq{}, hosted by Monty Hall, who died at the age of 96 in 2017. In
+the problem, a kind of idealization of what really went on in the
+show, a contestant who does well gets the chance to try for the big
+prize, a car. They are presented with three doors and are asked to
+choose one: the car is behind one door, behind the other two are
+goats. The contestant, foolishly in my view, wants the car. They pick
+a door. Monty Hall then opens one of the two remaining doors to reveal
+a goat. He gives the contestant the chance to change doors. Should
+they change?
+
+\section*{Conditional probability}
+
+One of the main characters in the Ian Banks novel \textit{Canal
+  Dreams} is afraid of flying; people try to reason her out of it,
+pointing out that being in a plane crash is very unlikely. She points
+out in return that it is even less likely if you aren't on a plane. We
+often want to model random or unknown events that are related to each
+other; for example, on a rare dry day in Summer in Galway, where I
+grew up, it was more likely to rain the next day if you could see the
+hills of Clare clearly across the bay. This sort of situation is
+modelled using conditional probabilities.
+
+Consider the sample space made up of pairs of points:
+\begin{equation}
+X=\{(r,c),(r,u),(d,c),(d,u)\}
+\end{equation}
+The outcome $(r,c)$ corresponds to rain and a clear view of the hills,
+$(r,u)$ to rain and no clear view, $(d,c)$ to dry and a clear view and
+$(d,u)$ to dry and no clear view. Let's imagine we have probabilities
+for each of these outcomes:
+\begin{center}
+\begin{tabular}{c|cccc}
+&$(r,c)$&$(r,u)$&$(d,c)$&$(d,u)$\\
+p&1/2&1/4&1/16&3/16
+\end{tabular}
+\end{center}
+Thus, the probability that it is going to rain and the hills are clear
+is $1/2$; the probability that the hills are unclear and it is going
+to stay dry is $3/16$. 
+
+It is useful to also define some events, for example $R$ for rain
+\begin{equation}
+R=\{(r,c),(r,u)\}
+\end{equation}
+and $C$ for clear
+\begin{equation}
+C=\{(r,c),(d,c)\}
+\end{equation}
+Equally well $\bar{R}=\{(d,c),(d,u)\}$ is the set of all points not in $R$, it is called the \textbf{complement} of $R$ and is given by
+\begin{equation}
+\bar{R}=X\setminus R
+\end{equation}
+where \lq{}$\setminus$\rq{} is \textbf{set minus}. This event
+corresponds to a dry day. It is easy to work out
+\begin{equation}
+P(R)=3/4
+\end{equation}
+and 
+\begin{equation}
+P(C)=9/16
+\end{equation}
+Now we can also work out probabilities for the intersections, for example:
+\begin{equation}
+P(R\cap C)=1/2
+\end{equation}
+This is the probability of $R$ and $C$ both happening, in the small
+example we are looking at here, this is just one outcome $(r,c)$, but,
+in general, the intersection might have more points in it. Now, notice
+that by definition
+\begin{equation}
+C=(R\cap C)\cup (\bar{R}\cap C)
+\end{equation}
+and, since $(R\cap C)\cap (\bar{R}\cap C)=\emptyset$ then
+\begin{equation}
+P(C)=P(R\cap C)+P(\bar{R}\cap C)
+\end{equation}
+Hence, the probability of $C$ is the probability of $C$ and $R$ plus
+the probability of $C$ and not $R$, or, in words; the probability that
+it is clear is the probability that it is clear and raining plus the
+probability that it is clear and not raining.
+
+Now we define
+\begin{equation}
+P(R|C)=\frac{P(R\cap C)}{P(C)} 
+\end{equation}
+This is the probability of $R$ given $C$; if we know it is clear how
+likely is it to be raining. The denominator $P(C)$ is needed because
+the probabilities must add up to one and $P(C)=P(R\cap C)+P(\bar{R}\cap C)$. Thus
+\begin{equation}
+P(R|C)=\frac{1/2}{9/16}=\frac{8}{9}\approx  0.89
+\end{equation}
+In other words, if we can see the hills of Clare, there is a 89\%
+chance it will rain tomorrow.
+
+More generally, if we have two events $A$ and $B$ then the conditional probability is
+\begin{equation}
+P(A|B)=\frac{P(A\cap B)}{P(B)}
+\end{equation}
+
+Here is a quick example. In the card game 21 you get given two cards
+and you add up their values; you then decide whether to take more
+cards, with the aim of being no more than and but as close to 21 as
+possible. In 21 picture cards count as ten; you can count an ace as
+one or 11; for simplicity lets pretend an ace has to be one and we are
+concentrating on the original hand of two cards. Now imagine you are
+given two cards; if the first card is a king what is the chance your
+hand is bigger the 17 in value? Let $B$ be the set of hands that has a
+king as the first card and $A$ is the set of hands worth more than
+17. First lets calculate $P(B)$. There are $52\times 51$ hands in
+total, and $4\times 51$ of them have a king as the first card so
+\begin{equation}
+P(B)=\frac{4}{52}=\frac{1}{13}
+\end{equation}
+Now, lets count the number of hands with a king as the first card, and
+a total value over 17. If the first hand is a king, if the second card
+is an 8, 9, 10 or picture card. This might seem like there are
+$6\times 4=24$ cards to go along with the king, but it isn't, since
+the first card is a king there are only 23 other cards to go along
+with it to make 18 or higher. Thus
+\begin{equation}
+P(A\cap B)=\frac{4\times 23}{51\times 52}
+\end{equation}
+where the first four corresponds to the choice of king. Thus
+\begin{equation}
+P(A|B)=\frac{23}{51}\approx 0.45
+\end{equation}
+
+In fact, conditional probability is very frequently calculated in
+situations like the first one, where the sample space is made of
+pairs. This make sense, it is like there are two things to measure and
+you use conditional probability to see how one relates to the
+other. Here is another example; imagine thinking about the journey
+times from Temple Meades to the top of Park Street. Consider a table
+of the describing the frequency different modes of transport are used
+and different times of travel are measured.
+\begin{center}
+\begin{tabular}{c|ccc}
+        &car    &walk  &cycle\\
+\hline
+$<20$     &0.025  &0.1   &0.2\\
+$[20,40]$ &0.125  &0.35  &0.05\\
+$>40$     &0.1    &0.05  &0
+\end{tabular}
+\end{center}
+Using the obvious notation we can work out the \textbf{marginal}
+distributions: for vehicles $P(\mbox{car})=P(\mbox{cycle})=0.25$ whereas
+$P(\mbox{walk})=0.5$, for times $P(<20)=0.325$, $P([20,40])=0.525$ and
+$P(>40)=0.15$. Now, say someone rushes in to your meeting and says
+they are sorry but it took them over 40 minutes to get from Temple
+Meades, what is the chance they travelled by car:
+\begin{equation}
+P(\mbox{car}\,|>40)=\frac{P(\mbox{car}\,\cap >40)}{P(>40)}=\frac{0.1}{0.15}=\frac{2}{3}
+\end{equation}
+Looking at the bottom row of the table you can see how it all works;
+\lq{}car\rq{} makes up two thirds of the values on that row; the
+denominator just serves to normalize the row so that it is a
+probability.
+
+\include{summary}
+
+\end{document}
+
