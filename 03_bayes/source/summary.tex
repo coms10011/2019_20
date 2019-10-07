@@ -1,0 +1,32 @@
+
+\ifind
+\section*{Summary}
+\else
+\subsection*{3 Bayes' theorem}
+\fi
+
+\begin{itemize}
+\item Two events $A$ and $B$ are said to be \textbf{independent} if 
+\begin{equation}
+P(A\cap B)=P(A)P(B)
+\end{equation}
+\item  Two events $A$ and $B$
+are \textbf{conditionally independent} conditional on a third event
+$C$ is
+\begin{equation}
+P(A\cap B|C)=P(A|C)P(B|C)
+\end{equation}
+\item \textbf{Bayes' rule} is
+  \begin{equation}
+    P(A|B)=\frac{P(B|A)P(A)}{P(B)}
+\end{equation}
+\item In a \textbf{na\"ive Bayes estimator} we estimate $P(X|A,B,\ldots,C)$ by first using Bayes' rule
+  \begin{equation}
+    P(X|A,B,\ldots,C)=\frac{P(A,B,\ldots,C|X)P(X)}{P(A,B,\ldots,C)}
+  \end{equation}
+  and then approximate using an assumption of independence:
+  \begin{eqnarray}
+    P(A,B,\ldots,C|X)&\approx&P(A|X)P(B|X)\ldots P(C|X)\cr
+    P(A,B,\ldots,C)&\approx&P(A)P(B)\ldots P(C)
+  \end{eqnarray}
+\end{itemize}
