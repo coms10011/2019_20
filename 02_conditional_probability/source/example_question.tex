@@ -1,0 +1,27 @@
+
+\ifind
+\section*{Example question}
+\else
+\subsection*{2 conditional probability - example question}
+\fi
+
+This is known as the `second sibling' problem and like the Monty Hall problem it was popularized by Marilyn Vos Savant:
+\begin{quote}
+ A shopkeeper says she has two new baby beagles to show you, but
+    she doesn't know whether they're male, female, or a pair. You tell
+    her that you want only a male, and she telephones the fellow who's
+    giving them a bath. "Is at least one a male?" she asks him. "Yes!"
+    she informs you with a smile. What is the probability that the
+    other one is a male?
+\end{quote}
+
+\noindent \textbf{solution} So we are assuming that males and females are equally likely and that the sex of the two pups is independent; the set of outcomes, using the obvious notation, is $\mathcal{X}=\{(m,m),(m,f),(f,m),(f,f)\}$ with each event having probability $1/4$. The event that at least one is male is $\mathcal{M}=\{(m,m),(m,f),(f,m)\}$. This means that $P(\mathcal{M})=3/4$. Lets call the event that the second dog is male $\mathcal{S}$ so $\mathcal{M}\cap\mathcal{S}=\{(m,m)\}$ and
+\begin{equation}
+P(\mathcal{M}\cap\mathcal{S})=\frac{1}{4}
+\end{equation}
+and hence
+\begin{equation}
+P(\mathcal{S}|\mathcal{M})=\frac{1}{3}
+\end{equation}
+and so the probability the second dog is male is one in three.
+
