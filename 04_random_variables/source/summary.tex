@@ -1,0 +1,51 @@
+
+\ifind
+\section*{Summary}
+\else
+\subsection*{4 Random variables}
+\fi
+
+
+\begin{itemize}
+\item A \textbf{random variable} is a map from sample space to a set of numerical values.
+\item The probability that $X=x$, $p(X=x)$, sometimes written $p(x)$,
+  is the sum of the probabilities of all the outcomes with value $x$.
+  \begin{enumerate}
+    \item \begin{equation}
+0\le p(x)\le 1
+\end{equation}
+\item 
+\begin{equation}
+\sum_x{p(x)}=1
+\end{equation}
+\end{enumerate}
+
+\item A \textbf{probability distribution} is a table of probabilities for a random variable.
+
+\item For two random variables $X$ and $Y$, the \textbf{joint distribution} is $p(x,y)$, the probability $X=x$ and $Y=y$; the \textbf{conditional distribution} of $X=x$ given $Y=y$ is $p(x|y)$ and the \textbf{marginal distribution} is
+  \begin{equation}
+    p(x)=\sum_{y}p(x,y)
+  \end{equation}
+
+\item Is $g(x)$ is a function, the \textbf{expected value} is
+  \begin{equation}
+\langle g(X)\rangle = \sum_x p(x)g(x)
+  \end{equation}
+
+\item The \textbf{mean} is $\langle X\rangle$. It is often called $\mu$.
+
+\item The \textbf{variance} is $\langle (X-\mu)^2\rangle$. It is often called $V$ or $\sigma^2$.
+
+\item The \textbf{$n$th moment}, often written $\mu_n$, is $\langle X^n\rangle$ and the \textbf{$n$th central moment} is $\langle (X-\mu)^2\rangle$.
+
+\item Expected values have nice properties
+  \begin{enumerate}
+    \item $\langle c g(X)\rangle =c\langle g(X)\rangle$
+\item $\langle 1\rangle=1$
+\item $\langle g_1(X)+g_2(X)\rangle=\langle g_1(X)\rangle+\langle g_2(X)\rangle$
+  \end{enumerate}
+  \item Using these nice properties it can be shown that $\sigma^2=\langle X^2\rangle -\mu^2$
+  
+\end{itemize}
+
+
