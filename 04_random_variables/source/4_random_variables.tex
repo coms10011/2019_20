@@ -1,0 +1,273 @@
+%4_random_variables.tex
+%notes for the course Probability and Statistics COMS10011
+%taught at the University of Bristol
+%2019_29 Conor Houghton conor.houghton@bristol.ac.uk
+%To the extent possible under law, the author has dedicated all copyright
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+
+\newif\ifind
+\indtrue
+
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{slashbox}
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{\texttt{coms10011.github.io}}
+\lhead{COMS100011 4\_random\_variables - Conor}
+\begin{document}
+
+\section*{4 Random variables}
+
+Very frequently when we are applying statistics and probability we are
+dealing with data we want to quantify. Because we can add, subtract
+and multiply numerical data, applying probability to numerical data
+allows for some techniques and approaches that aren't possible for
+other data types. The mathematical construction used in this case is a
+\textbf{random variable}.
+
+The expression \lq{}random variable\rq{} is often used very loosely
+and in a way that can be confusing; however, it does have an exact
+meaning. A random variable $X$ is a map from a sample space
+to a set of numerical values. For now we will deal with a discrete
+random variables, where those values are discrete. As an example
+consider the sample space for flipping a coin three times; the sample
+space will have eight elements, \{HHH, HHT, HTH, THH, HTT, THT, TTH,
+TTT\}. One random variable, say $X$, on this space is the number of
+heads. This random variable maps HHH to three and TTH to one.
+
+Just like events have a probability, so do random variables, in fact
+it is nearly the same definition: the probability that $X=x$,
+$p(X=x)$, sometimes written $p(x)$, is the sum of the probabilities of
+all the outcomes with value $x$. For a sample space $\mathcal{S}$ with
+random variable $X$ it is the probability of the event:
+\begin{equation}
+E_x=\{s\in \mathcal{S}|X(s)=x\}
+\end{equation}
+When there are more than one random variable being considered we
+sometimes write $p_X(x)$ to mean the probability corresponding to the
+random variable $X$. Note that we use a small letter $p$ for
+probabilities when we are talking about random variables, a big letter
+$P$ is usually used when talking about events.
+
+Going back to the coin flipping example, it is easy to see that 
+\begin{equation}
+p(X=1)=\frac{3}{8}
+\end{equation}
+since there are three equally probable outcomes corresponding to
+$X=1$. We can put all the possible values of the random variable in to
+a table
+\begin{center}
+\begin{tabular}{c|cccc}
+&0&1&2&3\\
+\hline
+$p$&1/8&3/8&3/8&1/8
+\end{tabular}
+\end{center}
+A table like this is called a \textbf{probability distribution}.
+
+The probabilities satisfy similar properties to the probabilities for
+events:
+\begin{equation}
+0\le p(x)\le 1
+\end{equation}
+and 
+\begin{equation}
+\sum_x{p(x)}=1
+\end{equation}
+where the sum is over all possible values $x$ with non-zero
+probabilities. More importantly, we interpret $p(x)$ as the frequency
+$X=x$, so if we choose random elements of the sample space 
+\begin{equation}
+\frac{\mbox{number of times we get the value }x}{\mbox{number of samples we take}}\rightarrow p_X(x)
+\end{equation}
+with the left hand side approaching the right hand side as the number
+of samples goes to infinity.
+
+As another example, consider rolling two three-sided dice, I'll leave
+it to you to work out how to make a three-sided dice, having a more
+realistic number of dice faces makes the tables really big. Let $X$ be
+the sum of the two numbers and $Y$ be the larger of the two
+numbers. We can work out both distributions. For $X$ we have
+\begin{center}
+\begin{tabular}{c|ccccc}
+&2&3&4&5&6\\
+\hline
+$p_X$&1/9&2/9&1/3&2/9&1/9
+\end{tabular}
+\end{center}
+and for $Y$
+\begin{center}
+\begin{tabular}{c|ccc}
+&1&2&3\\
+\hline
+$p_Y$&1/9&1/3&5/9
+\end{tabular}
+\end{center}
+We won't discuss it much now but you could also work out a
+\textbf{joint distribution}, this is the distribution for pairs
+$(X,Y)$:
+\begin{center}
+\begin{tabular}{c|ccccc}
+\backslashbox{$Y$}{$X$}&2&3&4&5&6\\
+\hline
+1&  1/9&0&0&0&0\\
+2&  0&2/9&1/9&0&0\cr
+3&  0&0&2/9&2/9&1/9
+\end{tabular}
+\end{center}
+so $p_{X,Y}(3,2)=2/9$ since it corresponds to the roll one and three
+along with the roll three and one. We can recover the original
+\textbf{marginal} distributions $p_X$ and $p_Y$ by summing out the
+variable we aren't interested in; clearly
+\begin{equation}
+p_Y(y=2)=p_{X,Y}(2,2)+p_{X,Y}(3,2)+p_{X,Y}(4,2)+p_{X,Y}(5,2)+p_{X,Y}(6,2)=\frac{2}{9}+\frac{1}{9}=\frac{1}{3}
+\end{equation}
+We can also work out, again with the obvious notation,
+\textbf{conditional probabilities} $p_{X|Y}(x|y)$ so
+\begin{center}
+\begin{tabular}{c|ccccc}
+&2&3&4&5&6\\
+\hline
+$p_{X|Y}(x|Y=2)$&0&2/3&1/3&0&0
+\end{tabular}
+\end{center}
+which is just
+\begin{equation}
+p_{X|Y}(x|y)=\frac{p_{X,Y}(x,y)}{p_Y(y)}
+\end{equation}
+
+\subsection*{Expected values}
+
+So far we have introduced some new, and slightly confusing, notation
+without anything to show for it. However, there is an advantage; as we
+noted above, numerical values support arithmetic. This allows us to
+define the expectation value. If $g(x)$ is a function we define the
+\textbf{expected value} of $g(X)$ as
+\begin{equation}
+\langle g(X)\rangle = \sum_x p(x)g(x)
+\end{equation}
+where the sum is over all values $x$ with non-zero probability. The
+angle brackets $\langle \ldots \rangle$ are a common notation for
+expectation values; they lead to a very convenient notation called
+\lq{}bra and ket\rq{} notation; we won't get to that here but we will
+use angle brackets for expectation values. Another common notation is
+to use a capital $E$, as in
+\begin{equation}
+E[g(X)]=\langle g(X)\rangle
+\end{equation}
+
+The most obvious expected value is the \textbf{expected value} of $X$:
+\begin{equation}
+\langle X \rangle =  \sum_x x p(x)
+\end{equation}
+Clearly, if the $p(x)$ represent the frequencies, this is the average
+or \textbf{mean} value taken by $X$; it is often called $\mu$. We are
+being careful to distinguish the expected value of $X$ and the mean;
+there are occasions when this distinction matters, but generally it
+doesn't. Basically the expected value is defined no matter what the
+$p(x)$s represent, if, as they almost always do, they represent the
+frequencies, what we think of as the probability of getting $X=x$,
+then the expected value is equal to the mean. On the way to proving
+some theorem it might be useful to define another probability
+distribution on the same data, where the second distribution doesn't
+correspond to frequencies; this is why it can be useful to distinguish
+the mean and the expected value of $X$.
+
+The expect value of $X$ is also referred to as the \textbf{first
+  moment}; the \lq{}first\rq{} bit is because it is the expectation
+value for the first power of $X$.
+
+As a simple example consider the probability distribution above for
+the number of heads when a coin is flipped three times:
+\begin{equation}
+\langle X\rangle =0\times\frac{1}{8}+1\times\frac{3}{8}+2\times\frac{3}{8}+3\times \frac{1}{8}=\frac{3+6+3}{8}=\frac{3}{2}
+\end{equation}
+
+Another common expected value is the \textbf{variance}:
+\begin{equation}
+V(X)=\langle (X-\mu)^2\rangle
+\end{equation}
+If $p(x)$ represents the frequencies, this is the square of the
+\textbf{standard deviation}: $V(X)=\sigma^2$. It is often interpreted
+as measuring how spread out the data is. For example, this
+distribution:
+\begin{center}
+\begin{tabular}{c|cccc}
+&0&1&2&3\\
+\hline
+$p_X$&1/8&3/8&3/8&1/8
+\end{tabular}
+\end{center}
+and this distribution
+\begin{center}
+\begin{tabular}{c|cccc}
+&0&1&2&3\\
+\hline
+$p_Y$&1/16&7/16&7/16&1/16
+\end{tabular}
+\end{center}
+both have expect valued $1.5$:
+\begin{equation}
+\langle X\rangle = \langle Y\rangle = 1.5
+\end{equation}
+However,
+\begin{equation}
+V(X)=0.75
+\end{equation}
+whereas 
+\begin{equation}
+V(Y)=0.5
+\end{equation}
+reflecting the way the second distribution is more tightly bunched up
+around the mean.
+
+The expected value has nice properties that it inherits from the nice
+properties of the underlying arithmetic. First, scalar multiplication:
+for a constant $c$
+\begin{equation}
+\langle c g(X)\rangle =\sum_x cg(x)p(x)=c\sum_x g(x)p(x)=c\langle g(X)\rangle
+\end{equation}
+Also, trivially:
+\begin{equation}
+\langle 1\rangle=\sum_x p(x)=1
+\end{equation}
+Finally, it is additive: if $g_1$ and $g_2$ are two different
+functions
+\begin{eqnarray}
+\langle g_1(X)+g_2(X)\rangle &=&\sum_x [g_1(x)+g_2(x)p(x)\cr
+&&=\sum_x g_1(x)p(x)+\sum_x g_2(x)p(x)=\langle g_1(X)\rangle+\langle g_2(X)\rangle
+\end{eqnarray}
+
+We can use this to get another formula for the variance:
+\begin{equation}
+V(X)=\langle (X-\mu)^2\rangle=\langle (X^2-2\mu X+\mu^2)\rangle
+\end{equation}
+Now, using the additive property
+\begin{equation}
+V(X)=\langle X^2 \rangle -2\mu\langle X\rangle +\langle \mu^2 \rangle
+\end{equation}
+Finally, noting $\mu=\langle X\rangle$ and using the scalar multiplication property, this give
+\begin{equation}
+V(X)=\langle X^2 \rangle - \mu^2 \rangle
+\end{equation}
+Incidentally $\langle X^2\rangle$ is called the \textbf{second
+  moment}, the variance is called the \textbf{second central moment};
+the \lq{}central\rq{} indicates that it is the second moment you get
+if you take away the mean first.
+
+\newpage
+\include{summary}
+
+\end{document}
+
+
+
+
