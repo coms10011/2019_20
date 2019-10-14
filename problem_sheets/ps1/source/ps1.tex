@@ -1,0 +1,207 @@
+%ps1.tex
+%notes for the course Probability and Statistics COMS10011 
+%taught at the University of Bristol
+%2019_20 Conor Houghton conor.houghton@bristol.ac.uk
+
+%To the extent possible under law, the author has dedicated all copyright 
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{\texttt{coms10011.github.io}}
+\lhead{COMS10011 ps1 - Conor}
+\begin{document}
+
+\section*{Problem Sheet 1}
+
+\begin{center}
+\includegraphics[width=7.5cm]{frequentists_vs_bayesians.png}
+\end{center}
+
+This is an xkcd cartoon that someone posted to the unit reddit last year, it is
+\texttt{https://xkcd.com/1132/}. It is also worth reading Randall Monroe's comment on the response to this cartoon:
+
+\begin{quote}
+Hey! I was kinda blindsided by the response to this comic.
+
+I’m in the middle of reading a series of books about forecasting
+errors (including Nate Silver’s book, which I really enjoyed), and
+again and again kept hitting examples of mistakes caused by blind
+application of the textbook confidence interval approach.
+
+Someone asked me to explain it in simple terms, but I realized that in
+the common examples used to illustrate this sort of error, like the
+cancer screening/drug test false positive ones, the correct result is
+surprising or unintuitive. So I came up with the sun-explosion
+example, to illustrate a case where naïve application of that
+significance test can give a result that’s obviously nonsense.
+
+I seem to have stepped on a hornet’s nest, though, by adding
+“Frequentist” and “Bayesian” titles to the panels. This came as a
+surprise to me, in part because I actually added them as an
+afterthought, along with the final punchline. (I originally had the
+guy on the right making some other cross-panel comment, but I thought
+the “bet” thing was cuter.)
+
+The truth is, I genuinely didn’t realize Frequentists and Bayesians
+were actual camps of people—all of whom are now emailing me. I thought
+they were loosely-applied labels—perhaps just labels appropriated by
+the books I had happened to read recently—for the standard textbook
+approach we learned in science class versus an approach which more
+carefully incorporates the ideas of prior probabilities.
+
+I meant this as a jab at the kind of shoddy misapplications of
+statistics I keep running into in things like cancer screening (which
+is an emotionally wrenching subject full of poorly-applied
+probability) and political forecasting. I wasn’t intending to
+characterize the merits of the two sides of what turns out to be a
+much more involved and ongoing academic debate than I realized.
+
+A sincere thank you for the gentle corrections; I’ve taken them to
+heart, and you can be confident I will avoid such mischaracterizations
+in the future!
+
+At least, 95.45\% confident.
+\end{quote}
+Thanks again to the person who posted this.
+
+\subsection*{Useful facts}
+
+\begin{itemize}
+
+\item \textbf{Combinations} The number of ways of choosing $r$ items out of $n$ is 
+\begin{equation}
+\left(\begin{array}{c}n\\r\end{array}\right)=\frac{n(n-1)(n-2)\ldots(n-r+1)}{r(r-1)(r-2)\ldots 1}=\frac{n!}{r!(n-r)!} 
+\end{equation}
+
+
+\item \textbf{Combinations} The number of ways of splitting $n$ items into sets of size $r_1$, $r_2$ through to $r_k$ with
+  \begin{equation}
+    r_1+r_2+\ldots+r_k=n
+  \end{equation}
+  is
+\begin{equation}
+\left(\begin{array}{c}n\\r_1,r_2,\ldots,r_k\end{array}\right)=\frac{n!}{r_1!r_2!\ldots r_k!} 
+\end{equation}
+
+
+\item \textbf{Bayes's rule}
+\begin{equation}
+P(A|B)=\frac{P(B|A)P(A)}{P(B)}
+\end{equation}
+
+\item \textbf{Set notation}:
+  \begin{itemize}
+  \item $A\cup B$ is the union so $A\cup B={x|x\in A\mbox{ or }x\in B}$. If $A=\{1,2,3\}$ and $B=\{3,4,5\}$ then $A\cup B=\{1,2,3,4,5\}$
+  \item $A\cap B$ is the intersection so $A\cap B={x|x\in A\mbox{ and }x\in B}$. If $A=\{1,2,3\}$ and $B=\{3,4,5\}$ then $A\cup B=\{3\}$
+   \item $A\setminus B$ is the set minus so $A\setminus B={x|x\in A\mbox{ and }x\not\in B}$. If $A=\{1,2,3,4\}$ and $B=\{1,3,5\}$ then $A\setminus B=\{2,4\}$
+   \item If $C$ is a subset, the complement of $C$, that is the set of all the elements not in $C$, is written $\bar{C}$. If $X=\{1,2,3,4\}$ and $C=\{1,2\}$ then $\bar{C}=\{3,4\}$.
+  \end{itemize}
+  For events, $A\cup B$ is the event of $A$ or $B$ happening, $A\cap
+  B$ is the event of $A$ and $B$ happening, $A\setminus B$ is the
+  event of $A$ happening but $B$ not happening and $\bar{C}$ is the
+  event of $C$ not happening.
+ 
+\item \textbf{Cards}: 52 cards made up of four suits; in each suit
+  there are 13 values, ace, two through to ten and the jack, queen,
+  kind.
+
+\item \textbf{Poker hands}: the number of poker hands is 
+\begin{equation}
+\left(\begin{array}{c}52\\5\end{array}\right)= 2598960
+\end{equation}
+
+\end{itemize}
+
+
+\subsection*{Questions}
+
+Five questions each worth two marks and two marks for attendance but
+with a maximum of ten marks.
+
+\begin{enumerate}
+
+\item In the poker hand \textsl{two pair} there are two pairs of cards
+  with each card in the pair matched by value; the fifth card has a
+  different value to either pair. What is the probability of two pairs
+  when five cards are drawn randomly.
+
+
+\item In a \textsl{full house} there is one
+  pair and one triple, what is the probability of getting a full
+  house?
+
+\item A student answers a multiple choice question with four options,
+  one of which is correct. 80\% of students know the answer, 20\% of
+  students guess and choose randomly. If a student gets the answer
+  correct what is the chance they knew the answer.
+
+\item In the xkcd cartoon above, what is the chance the Bayesian will
+  win his or her bet if the chance the sun has exploded is one in a
+  million? In reality the chance is, of course, much less than one in
+  a million! Show the answer to six decimal places.
+
+\item A three-sided dice is rolled three times. $X$ is the sum of the
+  largest two values. Write down the probability distribution for $X$.
+
+\end{enumerate}
+
+\subsection*{Extra questions}
+
+These are for you to do on your own, not for handing up. Solutions will be included in the solutions section.
+
+\begin{enumerate}
+
+\item When it started in 1987 the Irish lottery has 36 numbers;
+  participants paid 50 Irish pence to buy a combination of six
+  different numbers; they would win if these numbers matched the six
+  drawn. In the last week in May in 1992 a syndicate tried to buy all
+  combinations of numbers. If they had succeeded how many numbers
+  would they have bought? In the event the lottery shut down lots of
+  the lottery machines so they only bought most of the numbers, they
+  nonetheless had the winning number but shared the prize three
+  ways. However, because of the roll-over prize and the match-5 and
+  match-4 prizes, they are thought to have made a substantial
+  profit. The lottery was redesigned after this to have more numbers.
+
+
+\item From a group of three undergraduates and five graduate students,
+  rour students are randomly selected to act as TAs. What is the
+  chance there will be exactly two undergraduate TAs?
+
+\item Prove
+\begin{equation}
+\left(\begin{array}{c}n\\r\end{array}\right)=\left(\begin{array}{c}n\\n-r\end{array}\right)
+\end{equation}
+
+\item Two events $A$ and $B$ have probabilities $P(A)=0.2$, $P(B)=0.3$ and $P(A\cup B)=0.4$. Find
+\begin{enumerate}
+\item Find $P(A\cap B)$.
+\item Find $P(\bar{A}\cap \bar{B})$.
+\item Find $P(A|B)$.
+\end{enumerate}
+
+\item One night in a bar in Las Vegas you meet a dodgy character who
+  tells you that there are two types of slot machine in the Topicana,
+  one that pays out 10\% of the time, the other 20\%. One sort of
+  machine is blue, the other red. Unfortunately the dodgy character is
+  too drunk to remember which is which. The next day you randomly
+  select red to try, you find a red machine and put in a coin. You
+  lose. Assuming the dodgy character was telling the truth, what is
+  the chance the red machine is the one that pays out more. If you had
+  won instead of losing, what would the chance be?\footnote{I stole
+    this problem from \texttt{courses.smp.uq.edu.au/MATH3104/}}
+
+
+\end{enumerate}
+
+\end{document}
+
