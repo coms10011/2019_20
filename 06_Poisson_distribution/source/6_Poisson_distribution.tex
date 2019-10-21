@@ -1,0 +1,170 @@
+%6_Poisson_distribution.tex
+%notes for the course Probability and Statistics COMS10011
+%taught at the University of Bristol
+%2018_19 Conor Houghton conor.houghton@bristol.ac.uk
+%To the extent possible under law, the author has dedicated all copyright
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{\texttt{github.com/COMS10011/2018\_19}}
+\lhead{COMS100011 6\_Poisson\_distribution - Conor}
+\begin{document}
+
+\section*{6 Poisson distribution}
+
+Imagine someone fishing in a large lake; say the lake is so large that
+catching one fish doesn't effect the chance they'll catch
+another. Imagine too that the fishing conditions don't change
+day-by-day or hour-by-hour. Say we know how many fish they catch on
+average an hour, say five, but we want to estimate the probability
+that they catch four. In other words we know the average rate they
+catch fish, but the actual event, the fish chancing upon the lure and
+getting hooked, is random, and we want to know the distribution of this
+event count over an interval. This distribution is an example of the
+Poisson distribution and is the subject of this section.\footnote{This
+  joke, pretending the Poisson distribution is so named because it is
+  related to fish, rather than because it is named after the
+  mathematician Sim\'{e}on Denis Poisson, I stole from Eddie Wilson in
+  Engineering Mathematics. Poisson wrote about the Poisson
+  distribution in a book about how to estimate the number of wrongful
+  convictions; the distribution became well known after Ladislaus
+  Bortkiewicz used it in an investigation of how many Prussian
+  soldiers each year were killed by horse kicks. Both these examples
+  are like the fishing example, you want to study the relationship
+  between the rate of something happening and the distribution of
+  different numbers of occurrences.}
+
+\subsection*{Deriving the Poisson distribution}
+
+The Poisson distribution can be derived from the bionomial
+distribution, it just requires a nerve-wracking limit. Imagine slicing
+time up into small slices, each so small there is a vanishingly small
+chance of two events happening and that the change of one event is
+$p$. Thus, $P(\mbox{one fish})=p$, $P(\mbox{no fishes})=1-p$ and
+$P(\mbox{more than one fishes})=0$. Of course this is nonsense, if
+there can be one fish there is some change of two, but we are going to
+take the limit where the time interval becomes zero so this doesn't
+matter. Call the small interval width $\delta t$.
+
+
+\begin{figure}[tb]
+\begin{center}
+\include{fig_dist}
+\end{center}
+\caption{The Poisson distribution for a variety of values of $\lambda$. As $\lambda$ increases the peak moves to the right.\label{fig_dist}}
+\end{figure}
+
+
+Now if we are interested in the probability distribution for the
+number of events in an interval $T=n\delta t$, then, by the binomial
+distribution the probability of $r$ events is
+\begin{equation}
+p(r)=\left(\begin{array}{c}n\\r\end{array}\right)p^r(1-p)^{n-r}
+\end{equation}
+Now write $\delta t=T/n$ and consider the $n\rightarrow \infty$ limit:
+\begin{equation}
+p(r)=\lim_{n\rightarrow\infty}\left(\begin{array}{c}n\\r\end{array}\right)p^r(1-p)^{n-r}
+\end{equation}
+Since $p$ is the probability of an event in the small interval, it
+will become tiny as $n$ becomes large, so, to deal with quantities
+that remain useful in the limit, let $\lambda=np$. Subsituting this
+in, and expanding out the binomial coefficient:
+\begin{equation}
+p(r)=\lim_{n\rightarrow\infty}\frac{n(n-1)(n-2)\ldots (n-r+1)}{r!}\left(\frac{\lambda}{n}\right)^r\left(1-\frac{\lambda}{n}\right)^{n-r}
+\end{equation}
+As $n$ gets large the numerator of the first fraction just looks like $n^r$ and cancels with the denominator of the second fraction. Recall that
+\begin{equation}
+\lim_{n\rightarrow \infty}\left(1-\frac{x}{n}\right)^n=e^{-x}
+\end{equation}
+The $(1-\lambda/n)^{n-r}$ term has an extra $-r$ but
+\begin{equation}
+\lim_{n\rightarrow \infty}\left(1-\frac{\lambda}{n}\right)^{-r}=1
+\end{equation}
+Putting all this together we get
+\begin{equation}
+p(r)=\frac{\lambda^r}{r!}e^{-\lambda}
+\end{equation}
+
+First, it is easy to check that the probabilities add to one; but
+notice that this range of the random variable is infinite!  Using the
+Taylor expansion of the exponential:
+\begin{equation}
+e^x=\sum_{r=0}^\infty \frac{x^r}{r!}
+\end{equation}
+we have
+\begin{equation}
+\sum_{r=0}^\infty \frac{\lambda^r}{r!}e^{-\lambda}=e^{-\lambda}\sum_{r=0}^\infty \frac{\lambda^r}{r!}=e^{-\lambda}e^{\lambda}=1
+\end{equation}
+Next consider the mean
+\begin{equation}
+\mu = \sum_{r=0}^\infty r\frac{\lambda^r}{r!}e^{-\lambda}
+\end{equation}
+Because of the $r$ in the summand, the $r=0$ term is zero, so
+\begin{equation}
+\mu = \sum_{r=1}^\infty r\frac{\lambda^n}{r!}e^{-\lambda}
+\end{equation}
+Now, use $r!=r\times (r-1)!$:
+\begin{equation}
+\mu = \sum_{r=1}^\infty \frac{\lambda^r}{(r-1)!}e^{-\lambda}
+\end{equation}
+and then pull a $\lambda$ out the front
+\begin{equation}
+\mu = \lambda \sum_{r=1}^\infty \frac{\lambda^{r-1}}{(r-1)!}e^{-\lambda}
+\end{equation}
+Finally set $s=r-1$ and
+\begin{equation}
+\mu = \lambda \sum_{s=0}^\infty \frac{\lambda^s}{s!}e^{-\lambda}=\lambda
+\end{equation}
+so $\lambda$ is the average event count!
+
+Some example Poisson distributions are shown in Fig.~\ref{fig_dist}.
+
+\subsection*{Quick example}
+
+An average of two supervillians arrive at Gotham every day; Batman has
+little trouble fighting them off, in fact he can fight off six
+supervillians a day. Seven would be tricky though. What is the chance
+seven supervillians arrive in one day?
+\begin{equation}
+p(7)=\frac{2^7}{7!}e^{-2}\approx 0.0034
+\end{equation}
+so makes it seem Batman will probably be ok, however, you should note
+there are 365 days in the year. As for the fishing example:
+\begin{equation}
+p(4)=\frac{5^4}{4!}e^{-5}\approx 0.19
+\end{equation}
+
+\section*{Summary}
+
+\begin{itemize}
+
+\item In a \textbf{Poisson process} events occur randomly, the rate
+  they occur at doesn't change over time and the chance of an event
+  occuring doesn't depend on when events happened in the past.
+  
+  \item The \textbf{Poisson distribution} gives the probability of $r$
+    events occuring in a time interval if $\lambda$ is the rate, the average number of events in that period:
+\begin{equation}
+p(r)=\frac{\lambda^r}{r!}e^{-\lambda}
+\end{equation}    
+
+\item There is a fancy derivation of this formula which involves subdividing the interval into small subintervals.
+
+\item It is possible to show $\lambda$ is the average count by writing down the formula for the mean and rearranging the terms.
+  \end{itemize}
+
+\end{document}
+
+
+
+
