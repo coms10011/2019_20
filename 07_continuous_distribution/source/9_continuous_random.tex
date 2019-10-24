@@ -1,0 +1,87 @@
+%7_moment_generating_function
+%notes for the course Probability and Statistics COMS10011
+%taught at the University of Bristol
+%2018_19 Conor Houghton conor.houghton@bristol.ac.uk
+%To the extent possible under law, the author has dedicated all copyright
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{\texttt{github.com/COMS10011/2018\_19}}
+\lhead{COMS100011 7\_moment\_generating\_function - Conor}
+\begin{document}
+
+\section*{7 The moment generating function}
+
+This is a topic we won't explore very far; suffice to say it is
+presented here as a curio but in some parts of probability theory it
+is proves very useful and it often mentioned. Recall the definition of the $i$th moment, which for convenience we'll call $\mu_i$:
+\begin{equation}
+\mu_i=\langle X^i\rangle
+\end{equation}
+Hence $\mu$ the mean is $\mu=\mu_i$. Now you should also recall the
+formula for the Taylor expansion of the exponential:
+\begin{equation}
+e^x=\sum_n \frac{x^n}{n!}
+\end{equation}
+Now the \textsl{moment generating function} $m(t)$ is defined as
+\begin{equation}
+m(t)=\langle e^{tX}\rangle
+\end{equation}
+
+This function \lq{}generates\rq{} all the moments because 
+\begin{equation}
+m(t)=\langle e^{tX}\rangle=\sum \frac{t^n}{n!}\langle X^n\rangle =\sum \frac{t^n}{n!}\mu_n
+\end{equation}
+so it is equivalent to a sum with all the moment in it. In fact, if we
+don't worry for a minute about what $X$ is and just treat it like a
+constant, we know
+\begin{equation}
+\frac{d^n}{dt^n}e^{tX}=X^ne^{tX}
+\end{equation}
+and so
+\begin{equation}
+\frac{d^n}{dt^n}m(t)=\langle X^ne^{tX}\rangle
+\end{equation}
+so setting $t=0$ after differenciating gives
+\begin{equation}
+\frac{d^nm}{dt^n}(0)=\langle X^n\rangle=\mu_n
+\end{equation}
+Of course you might worry about $X$ not being a constant but, rather,
+a function; with a bit of effort, which we won't expend here, it can
+be shown how to set this up so that this doesn't matter.
+
+Why might be do this; well the thing is the moment generating function
+encodes all the properties of the distribution into one place and this
+can be useful for proving theorems. We can think of it as an
+alternative description of the distribution, instead of giving the
+probabilities $p(X)$ we give the moments, all wrapped up in a single
+function.
+
+
+We just note that it can be
+calculated as an explicit formula in some cases. For a particularly
+easy case consider the Bernoulli distribution, that is a random
+variable with two outcomes, say zero and one, with $p(1)=p$ and $p(0)=q=1-p$. Now
+\begin{equation}
+m(t)=\langle e^{tX}\rangle=pe^t+(1-p)e^0=1-p+pe^t
+\end{equation}
+In fact, though we won't look at any other examples here, it is
+usually possible to calculate the moment generating function for a
+distribution.
+
+
+\end{document}
+
+
+
+
