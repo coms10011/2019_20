@@ -115,7 +115,7 @@ Because of the $r$ in the summand, the $r=0$ term is zero, so
 \end{equation}
 Now, use $r!=r\times (r-1)!$:
 \begin{equation}
-\mu = \sum_{r=1}^\infty \frac{\lambda^r}{(r-1)!}e^{-\lambda}
+  \mu = \sum_{r=1}^\infty \frac{\lambda^r}{(r-1)!}e^{-\lambda}
 \end{equation}
 and then pull a $\lambda$ out the front
 \begin{equation}
@@ -126,6 +126,28 @@ Finally set $s=r-1$ and
 \mu = \lambda \sum_{s=0}^\infty \frac{\lambda^s}{s!}e^{-\lambda}=\lambda
 \end{equation}
 so $\lambda$ is the average event count!
+
+This calculation can also be done using the same approach we used for the binomial distribution: by differenciating
+\begin{equation}
+  Z=\sum_{r=0}^\infty p(r)=1
+\end{equation}
+In this case
+\begin{equation}
+  0=\frac{d}{d\lambda}Z=\frac{d}{d\lambda}\sum_{r=0}^\infty \frac{\lambda^r}{r!}e^{-\lambda}
+\end{equation}
+Using the product rule
+\begin{equation}
+0= \sum_{r=0}^\infty \frac{r\lambda^{r-1}}{r!}e^{-\lambda}-\sum_{r=0}^\infty \frac{\lambda^r}{r!}e^{-\lambda}
+\end{equation}
+Now the second term is just $Z$ again, that is one, then multiplying and dividing by $\lambda$ in the first term gives
+\begin{equation}
+  0=\frac{1}{\lambda}\sum_{r=0}^\infty \frac{r\lambda^r}{r!}e^{-\lambda}-1
+\end{equation}
+Noting the first sum is just the average we get
+\begin{equation}
+  \mu=\lambda
+\end{equation}
+as before. This same method could be used to derive the variance.
 
 Some example Poisson distributions are shown in Fig.~\ref{fig_dist}.
 
