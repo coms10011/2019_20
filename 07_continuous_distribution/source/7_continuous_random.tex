@@ -77,6 +77,18 @@ or
 P(x\in [x_1,x_2])=\int_{x_1}^{x_2} f(y)dy
 \end{equation}
 
+Obviously if $x>y$ then $F(x)\ge F(y)$, adding more outcomes can't reduce the probability. This means that $F(x)$ is a non-descreasing function and hence has a non-negative derivative, so
+\begin{equation}
+  f(x)\ge 0
+\end{equation}
+However, while all probabilities have to be less than one:
+\begin{equation}
+  P(x\in [a,b])=\int_a^bf(y)dy\le 1
+\end{equation}
+this doesn't mean $f(x)$ itself is bounded by one; it can exceed one
+provided its integral over any limit is less than one. We will see
+examples of this when we look at the Gau\ss ian distribution.
+
 We can see when the density is called the density; it is very similar
 to working out mass, say you had a rod with variable density $\rho(x)$
 where $x$ is where you are along the rod. It wouldn't make sense to
