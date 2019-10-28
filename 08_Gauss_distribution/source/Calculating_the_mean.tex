@@ -1,0 +1,50 @@
+
+First lets work out the mean and variance of this distribution, it is
+a maybe surprising thing that the integrals required for calculating
+the mean and variance are much easier than the integral mentioned
+above for normalizing the curve. So, mean first
+\begin{equation}
+\mu=\int_{-\infty}^\infty xp(x)dx =\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty xe^{-x^2/2}dx
+\end{equation}
+This integral is very easy because the integrand is odd: a function $f(x)$ is odd if $f(-x)=-f(x)$. Now consider the integral from minus infinity to infinity of an odd function
+\begin{equation}
+\int_{-\infty}^\infty f(x)dx=\int_{-\infty}^0 f(x)dx+\int_0^\infty f(x)dx
+\end{equation}
+then let $x'=-x$ in the second integral. Note that $dx'=-dx$ and $x=\infty$ means $x'=-\infty$ and swithcing around the limits in an integral changes the sign:
+\begin{equation}
+\int_b^a g(x)dx=-\int_a^b g(x)dx
+\end{equation}
+Finally $f(x)=f(-x')=-f(x')$ so we have
+\begin{equation}
+\int_{-\infty}^\infty f(x)dx=\int_{-\infty}^0 f(x)dx-\int_0^{\infty} f(x')dx'=0
+\end{equation}
+Hence, noting that 
+\begin{equation}
+f(x)=xe^{-x^2/2}
+\end{equation}
+is odd we see $\mu=0$
+
+The variance is a little trickier, given the zero mean we have
+\begin{equation}
+\sigma^2=\int_{-\infty}^\infty x^2p(x)dx =\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty x^2e^{-x^2/2}dx
+\end{equation}
+This has to be done by integrating by parts, if you don't know integration by parts, just ignore this bit, but
+\begin{equation}
+\frac{d}{dx}e^{-x^2/2}=xe^{-x^2/2}
+\end{equation}
+so
+\begin{equation}
+\sigma^2=-\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty x\frac{de^{-x^2/2}}{dx}dx
+\end{equation}
+Now, applying the integration by parts formula
+\begin{equation}
+\int_a^b u\frac{dv}{dx}dx=uv|_a^b-\int_a^b v\frac{du}{dx}dx
+\end{equation}
+and using the fact 
+\begin{equation}
+\lim_{x\rightarrow \pm \infty} xe^{-x^2/2}=0
+\end{equation}
+we have 
+\begin{equation}
+\sigma^2=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-x^2/2}dx=1
+\end{equation}
