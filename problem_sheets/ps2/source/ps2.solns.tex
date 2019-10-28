@@ -1,0 +1,194 @@
+%ps2.tex
+%notes for the course Probability and Statistics COMS10011 
+%taught at the University of Bristol
+%2019_20 Conor Houghton conor.houghton@bristol.ac.uk
+
+%To the extent possible under law, the author has dedicated all copyright 
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{\texttt{coms10011.github.io}}
+\lhead{COMS10011 ps2.solns - Conor}
+
+\begin{document}
+
+\section*{Problem Sheet 2 - outline solutions}
+
+\subsection*{Questions}
+
+Four questions, each worth two marks with two marks for attendance.
+
+\begin{enumerate}
+
+
+\item The illusionist Derren Brown famously flipped a coin on camera
+  so that it landed heads ten times in a row; he claimed that this was
+  because of his mind powers, in fact it was because of his patience,
+  he simply kept trying the trick again and again until it
+  worked. It took him nine hours. What is the probability of a coin landing heads ten times in
+  a row? If you flip a coin ten times what is the probability of
+  getting five heads and five tails?\\ \\ \\ \textbf{Solution}: The chance of 10 heads is
+\begin{equation}
+p(10)=0.5^{10}=0.0009765625
+\end{equation}
+whereas the chance of five heads is
+\begin{equation}
+p(5)=\left(\begin{array}{c}10\\5\end{array}\right)0.5^{10}=0.24609375
+\end{equation}
+
+
+\item A fisher catches on average a fish every 25 minutes. What is the
+  probability that they catche no fish in an
+  hour?\\ \\ \\ \textbf{Solution}: If he catches a fish every 25
+  minutes then his rate for an hour is 60/25=2.4 so
+\begin{equation}
+p(0)=e^{-2.4}\approx 0.09
+\end{equation}
+
+\item The distribution of tree heights in a christmas tree forest is 
+\begin{equation}
+p(h)=\left\{\begin{array}{cc} 0.3& 0\le h <2\\0.2& 2\le h<4\\0&\mbox{otherwise}\end{array}\right.
+\end{equation}
+What is the mean height of trees in the forest?
+\\ \\ \\
+\textbf{Solution}: So 
+\begin{equation}
+\mu =\langle H\rangle=\int_{-\infty}^\infty hf(h)=\int_{0}^2 {0.3h}dh+\int_2^4{0.2h}dh
+\end{equation}
+and
+\begin{equation}
+\int_{0}^2 {0.3h}dh=\left.0.3\frac{h^2}{2}\right|_0^2=0.6
+\end{equation}
+and
+\begin{equation}
+\int_{2}^4 {0.2h}dh=\left.0.2\frac{h^2}{2}\right|_2^4=0.2 (8-2)=1.2
+\end{equation}
+so $\mu=1.8$.
+
+\item Like the binomial distribution the geometric probability
+  distribution is related to a series of independent trials where each
+  trial has probability $p$ of success and $q=1-p$ of failure. The
+  geometric probability $p(r)$ is the probability that the $r$th trial
+  is the first success. It is
+\begin{equation}
+p(r)=q^{r-1}p
+\end{equation}
+It can be shown that 
+\begin{equation}
+\sum_{r=1}^\infty p(r)=1
+\end{equation}
+as it must be. You can assume that here. What is the mean of the geometric probability? As a hint, this is done much as for the binomial expansion.
+\\ \\ \\ 
+\textbf{Solution}: So we have
+\begin{equation}
+1=\sum_{r=1}^\infty q^{r-1}p
+\end{equation}
+If we differenciate both sides by $p$ we get
+\begin{equation}
+0=\sum_{r=1}^\infty q^{r-1}-\sum_{r=1}^\infty (r-1)q^{r-2}p
+\end{equation}
+or
+\begin{equation}
+0=\frac{1}{p}\sum_{r=1}^\infty q^{r-1}p-\sum_{r=1}^\infty (r-1)q^{r-2}p
+\end{equation}
+In the second term set $s=r-1$ to get 
+\begin{equation}
+\sum_{r=1}^\infty (r-1)q^{r-2}p=\sum_{s=0}^\infty sq^{s-1}p=\sum_{s=1}^\infty sq^{s-1}p
+\end{equation}
+where we are able to change drop the $s=0$ term in the sum because it gives zero. Now back to the original equation:
+\begin{equation}
+0=\frac{1}{p}\sum_{r=1}^\infty q^{r-1}p-\sum_{s=1}^\infty sq^{s-1}p
+\end{equation}
+Now note that the first sum gives one and the second gives $\mu$ so
+\begin{equation}
+\mu=\frac{1}{p}
+\end{equation}
+
+We weren't asked to prove
+\begin{equation}
+\sum_{r=1}^\infty p(r)=1
+\end{equation}
+but in case you are interested it is discussed here
+\begin{equation}
+\sum_r q^{r-1}p=1
+\end{equation}
+For this we use the expansion
+\begin{equation}
+\frac{1}{1-q}=1+q+q^2+\ldots
+\end{equation}
+you can think of this as coming from the binomial expansion of $(1-q)^{-1}$ using the generalized binomial formula discovered by Newton
+\begin{equation}
+(1+x)^n=\sum_r \frac{n(n-1)\ldots (n-r+1)}{r!}x^r
+\end{equation}
+with $n=-1$; it can also be derived as the Taylor expansion. Either way we have
+\begin{equation}
+\frac{1}{1-q}=\sum_{r=0}^\infty q^r=\sum_{r=1}^\infty q^{r-1}
+\end{equation}
+and since $1-q=p$ this gives the result.
+
+\end{enumerate}
+
+\subsection*{Extra questions}
+
+\begin{enumerate}
+
+\item Oranmore, the village I grew up in had more people with the
+  surname Furey than any other village or town in the world. Since I
+  left the village has expanded ten-fold and has gone from being a
+  small village to a commuter town for Galway. However, when I was young
+  one in ten people in the village had the surname Furey. Imagine
+  there are 35 children in a class at school, what is the probability
+  that five of them were Fureys?
+
+  \textbf{Solution}: So this is just
+  \begin{equation}
+    p(r=5)=\left(\begin{array}{c}35\\5\end{array}\right) \left(\frac{1}{10}\right)^{5}\left(\frac{9}{10}\right)^{30}
+\end{equation}
+which is about $0.14$.
+  
+\item The \textbf{Fano factor} is sometimes used to describe distributions, it is
+  \begin{equation}
+    F=\frac{\sigma^2}{\mu}
+  \end{equation}
+What is the Fano factor for the Poisson distribution?
+
+  \textbf{Solution}: We the mean and variance are both $\lambda$ so $F=1$.
+
+\item The aim of this question is to use a similar argument to the one
+  used to derive the Poisson distribution to work out the distribution
+  for the time before the next event in a homogenous Poisson
+  process. In the fishing example, it is the probability density for
+  the time until the next fish is caught.
+  \begin{enumerate}
+    \item Say the next event occurs at a time $T$, divide this up into
+      subinterval $T=n\delta t$ and write down the probability $P$ that
+      there is no event in each of the first $n-1$ subintervals and an
+      event in the final subinterval where $\lambda\delta t$ is the
+      probability of an event in a $\delta t$ long subinterval.
+    \item Now if the probability is related to the density by $P\approx p\delta t$ take the limit of $p$ as $n$ goes to infinity.
+      \end{enumerate}
+
+  \textbf{Solution}: For the first part, the probability is just
+  \begin{equation}
+    P=\left(1-\frac{\lambda T}{n}\right)^{n-1}\lambda \delta t
+  \end{equation}
+and so   
+    \begin{equation}
+    p=\left(1-\frac{\lambda T}{n}\right)^{n-1}\lambda \rightarrow \lambda e^{-\lambda t}
+    \end{equation}
+    as $n\rightarrow \infty$.
+\end{enumerate}
+
+
+
+\end{document}
+

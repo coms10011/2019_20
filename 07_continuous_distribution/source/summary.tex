@@ -1,0 +1,51 @@
+
+\ifind
+\section*{Summary}
+\else
+\subsection*{8 Continuous random variables}
+\fi
+
+\begin{itemize}
+
+\item The \textbf{distribution function} or \textbf{cumulative} is
+  \begin{equation}
+F(x)=P(X<x)
+  \end{equation}
+  so $\lim_{x\rightarrow -\infty}F(x)=0$ and $\lim_{x\rightarrow \infty}F(x)=1$.
+  
+
+\item The \textbf{density function} is
+  \begin{equation}
+f(x)=\frac{dF}{dx}
+  \end{equation}
+
+\item By integrating we get
+  \begin{equation}
+    F(x)=\int_{-\infty}^x f(y)dy
+  \end{equation}
+  and so
+  \begin{equation}
+    \int_{-\infty}^\infty f(y)dy=1
+  \end{equation}
+
+\item Hence
+  \begin{equation}
+P(x\in [x_1,x_2])=F(x_2)-F(x_1)
+\end{equation}
+or
+\begin{equation}
+P(x\in [x_1,x_2])=\int_{x_1}^{x_2} f(y)dy
+\end{equation}
+
+\item $F(x)$ is a non-descreasing function so $f(x)\ge 0$. However while $\int_{x_0}^{x_1} f(x)dx\le 1$ for any $x_1>x_0$ there is no upperbound on $f(x)$.
+
+
+\item Expected values work much the same way they did for discrete
+  random variables.
+
+\item If $Y=X+c$ then $\mu_Y=\mu_x+c$ and $\sigma_Y^2=\sigma_X^2$.
+
+  \item If $Y=cX$ then $\mu_Y=c\mu_X$ and $\sigma_Y^2=c^2\sigma_X^2$.
+
+    \end{itemize}
+
