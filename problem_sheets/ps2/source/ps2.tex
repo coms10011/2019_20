@@ -1,0 +1,152 @@
+%ps2.tex
+%notes for the course Probability and Statistics COMS10011 
+%taught at the University of Bristol
+%2018_19 Conor Houghton conor.houghton@bristol.ac.uk
+
+%To the extent possible under law, the author has dedicated all copyright 
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{\texttt{coms10011.github.io}}
+\lhead{COMS10011 ps2 - Conor}
+\begin{document}
+
+\section*{Problem Sheet 2}
+
+\subsection*{Useful facts}
+
+\begin{itemize}
+
+\item \textbf{Expected value}. For a discrete random variable with probability $p(x)$ this is
+\begin{equation}
+\langle g(X) \rangle = \sum_x p(x)g(x)
+\end{equation}
+For a continuous random variable with density $f(x)$ this is
+\begin{equation}
+\langle g(X)\rangle = \int_{-\infty}^\infty{f(x)g(x)}dx
+\end{equation}
+
+
+\item \textbf{Mean and variance}. The mean is $\mu=\langle X\rangle$ and the variance is $\sigma^2=\langle(X-\mu)^2\rangle=\langle X^2\rangle - \mu^2$.
+
+\item \textbf{Binomial distibution}. For $n$ independent trials each with $p$ change of success and $q=1-p$ of failure, the probability of $r$ successes is 
+\begin{equation}
+p(r)=\left(\begin{array}{c}n\\r\end{array}\right)p^rq^{n-r}
+\end{equation}
+and $\mu=pn$, $\sigma^2=pqn$.
+
+\item \textbf{Poisson distribution}. This has
+\begin{equation}
+p(r)=\frac{\lambda^r}{r!}e^{-\lambda}
+\end{equation}
+where $\mu=\lambda$ and $\sigma^2=\lambda$.
+
+
+\item \textbf{The limit of infinite compounding}
+  \begin{equation}
+    \left(1-\frac{x}{n}\right)^n\rightarrow e^{-x}
+  \end{equation}
+  as $n\rightarrow\infty$.
+
+\item \textbf{Integrating a polnomial}
+\begin{equation}
+\int x^n dx=\frac{x^{n+1}}{n+1}
+\end{equation}
+so the definite integral is
+\begin{equation}
+\int_{a}^b x^n dx=\frac{b^{n+1}}{n+1}-\frac{a^{n+1}}{n+1}
+\end{equation}
+
+\end{itemize}
+
+
+
+\subsection*{Questions}
+
+Four questions, each worth two marks with two marks for attendance.
+
+\begin{enumerate}
+
+\item The illusionist Derren Brown famously flipped a coin on camera
+  so that it landed heads ten times in a row; he claimed that this was
+  because of his mind powers, in fact it was because of his patience,
+  he simply kept trying the trick again and again until it
+  worked. It took him nine hours. What is the probability of a coin landing heads ten times in
+  a row? If you flip a coin ten times what is the probability of
+  getting five heads and five tails?
+
+\item A fisher catches on average one fish every 25 minutes. What is
+  the probability that they catch no fish in an hour?
+
+\item The distribution of tree heights in a christmas tree forest is 
+\begin{equation}
+p(h)=\left\{\begin{array}{cc}0.3& 0\le h <2\\0.2& 2\le h<4\\0&\mbox{otherwise}\end{array}\right.
+\end{equation}
+What is the mean height of trees in the forest?
+
+\item Like the binomial distribution the geometric probability
+  distribution is related to a series of independent trials where each
+  trial has probability $p$ of success and $q=1-p$ of failure. The
+  geometric probability $p(r)$ is the probability that the $r$th trial
+  is the first success. It is
+\begin{equation}
+p(r)=q^{r-1}p
+\end{equation}
+It can be shown that 
+\begin{equation}
+\sum_{r=1}^\infty p(r)=1
+\end{equation}
+as it must be. You can assume that here. What is the mean of the geometric probability?
+
+\end{enumerate}
+
+\subsection*{Extra questions}
+These are for you to do on your own, not for handing up.
+
+\begin{enumerate}
+
+\item Oranmore, the village I grew up in had more people with the
+  surname Furey than any other village or town in the world. Since I
+  left the village has expanded ten-fold and has gone from being a
+  small village to a commuter town for Galway. However, when I was young
+  one in ten people in the village had the surname Furey. Imagine
+  there are 35 children in a class at school, what is the probability
+  that five of them were Fureys?
+
+\item The \textbf{Fano factor} is sometimes used to describe distributions, it is
+  \begin{equation}
+    F=\frac{\sigma^2}{\mu}
+  \end{equation}
+What is the Fano factor for the Poisson distribution?
+
+
+
+\item The aim of this question is to use a similar argument to the one
+  used to derive the Poisson distribution to work out the distribution
+  for the time before the next event in a homogenous Poisson
+  process. In the fishing example, it is the probability density for
+  the time until the next fish is caught.
+  \begin{enumerate}
+    \item Say the next event occurs at a time $T$, divide this up into
+      subinterval $T=n\delta t$ and write down the probability $P$ that
+      there is no event in each of the first $n-1$ subintervals and an
+      event in the final subinterval where $\lambda\delta t$ is the
+      probability of an event in a $\delta t$ long subinterval.
+    \item Now if the probability is related to the density by $P\approx p\delta t$ take the limit of $p$ as $n$ goes to infinity.
+      \end{enumerate}
+
+\end{enumerate}
+  
+  
+
+\end{document}
+
