@@ -1,0 +1,176 @@
+%10_central_limit_theorem
+%notes for the course Probability and Statistics COMS10011
+%taught at the University of Bristol
+%2018_19 Conor Houghton conor.houghton@bristol.ac.uk
+%To the extent possible under law, the author has dedicated all copyright
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+
+\newif\ifind
+\indtrue
+
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{\texttt{github.com/COMS10011/2018\_19}}
+\lhead{COMS100011 10\_central\_limit\_theorem - Conor}
+\begin{document}
+
+\section*{10 The Central Limit Theorem}
+
+\subsection*{The sum of two random variables}
+
+Say we have two continuous random variables $X$ and $Y$, with density
+functions $p_X(x)$ and $p_Y(y)$; consider working out the distribution for 
+\begin{equation}
+Z=X+Y
+\end{equation}
+Now the thing is that there is more than one value for $x$ and $y$
+that gives $Z=z$. In fact $Z=z$ if $Y=z-x$ for any value of $x$ so
+\begin{equation}
+p_Z(z)=\int_{-\infty}^\infty {p_X(x)p_Y(z-x)dx}
+\end{equation}
+This calculation is called a \textbf{convolution}.
+
+As a simple example consider $X$ and $Y$ both uniformly distributed
+over $[0,1]$:
+\begin{equation}
+p_X(x)=\left\{\begin{array}{ll}1:x\in[0,1]\\0:\mbox{otherwise}\end{array}\right.
+\end{equation}
+with $p_Y(y)$ the same. Now $Z=X+Y$ has the distribution
+\begin{equation}
+p_Z(z)=\int_{-\infty}^\infty {p_X(x)p_Y(z-x)dx}
+\end{equation}
+where the integrand is zero unless $x$ and $z-x$ are both inside the
+interval zero to one. Now, the first contraint, $x\in [0,1]$ is easy
+but the second one depends on $z$. If $z<0$ then $z-x$ is always
+negative and $p_Y(z-x)=0$. If $z>2$ then $z-x>1$ and again
+$p_Y(z-x)=0$. If $z\in [0,2]$ there are two cases, if $z<1$ then $x$
+then $z-x>0$ for $x\in [0,z]$, otherwise if $z>1$ then $z-x<1$ in $x\in
+[z-1,1]$. Lets do the two cases separately, for $z\in [0,1]$:
+\begin{equation}
+p_Z(z)=\int_0^z dx=z
+\end{equation}
+and for $z\in (1,2]$
+\begin{equation}
+p_Z(z)=\int_{z-1}^1dx=1-(z-1)=2-z
+\end{equation}
+Putting it all together we get
+\begin{equation}
+p_Z(z)=\left\{\begin{array}{ll} z&z\in [0,1]\\2-z& z\in [1,2]\\0&\mbox{otherwise}\end{array}\right.
+\end{equation}
+
+\subsection*{Sums and the moment generating function\footnote{not covered in lectures and not examinable}}
+Recall that
+\begin{equation}
+m_X(t)=\langle e^{tX}\rangle
+\end{equation}
+where we have used the usual trick of putting a subscript $X$ for
+distinguishing probability quantities for different random variables. Now if $X$ and $Y$ are independent we have
+\begin{equation}
+m_{X+Y}(t)=\langle e^{t(X+Y)}\rangle=\langle e^{tX}e^{tY}\rangle=\langle e^{tX}\rangle \langle e^{tY}\rangle=m_X(t)m_Y(t)
+\end{equation}
+
+\subsection*{The sum of two Gau\ss{}ians\footnote{not covered in lectures and not examinable}}
+
+Next lets consider the sum of two Gau\ss{}ians, $X\sim
+\mathcal{N}(\mu_x,\sigma_x^2)$ and $Y\sim
+\mathcal{N}(\mu_Y,\sigma_Y^2)$. Recall that we know the moment generating map for the Gaussian and
+\begin{eqnarray}
+m_X(t)&=&e^{\mu_X t+\frac{1}{2}\sigma_X^2t^2}\cr
+m_Y(t)&=&e^{\mu_Y t+\frac{1}{2}\sigma_Y^2t^2}
+\end{eqnarray}
+so if $Z=X+Y$, using the formula above for the moment generating map
+of a sum
+\begin{equation}
+m_Z(t)=e^{\mu_X t+\frac{1}{2}\sigma_X^2t^2}e^{\mu_Y t+\frac{1}{2}\sigma_Y^2t^2}
+=e^{(\mu_x+\mu_Y)t+\frac{1}{2}(\sigma_X^2+\sigma_Y^2)t^2}
+\end{equation}
+Hence
+\begin{equation}
+Z\sim \mathcal{N}(\mu_X+\mu_Y,\sigma_X^2+\sigma_Y^2)
+\end{equation}
+
+\subsection*{The central limit theorem}
+
+Let $\{X_1,X_2,\ldots,X_n\}$ be a set of random variables. A set of
+random variables is called \textbf{independent identically distributed},
+usually abbreviated to i.i.d., if the variables all have the same
+probability density, say $p_X(x)$ and are independent. Let $\mu$ and
+$\sigma^2$ be the mean and variance of that probability density. Now
+consider the \textbf{sample mean}:
+\begin{equation}
+S_n=\frac{X_1+X_2+\ldots+X_n}{n}
+\end{equation}
+If you were estimating the mean for $X$ this is the value you would
+measure if you took $n$ independent samples. Now the central limit
+theorem stats that for $n$ approaching infinity
+\begin{equation}
+U_n=\sqrt{n}\left(\frac{S_n-\mu}{\sigma}\right) \sim \mathcal{N}(0,1)
+\end{equation}
+
+As an example, consider the uniform distribution example we looked
+before; in Fig.~\ref{fig_const} we plot $U_n$ for different $n$. We
+see that it very quickly comes to resemble a Gau\ss{}ian distribution.
+
+\begin{figure}[tb]
+\begin{center}
+\include{conv}
+\end{center}
+\caption{$U_n$ for different $n$s where $X$ is the uniform distribution.\label{fig_const}}
+\end{figure}
+
+We won't prove the central limit theorem here, doing so involves a bit
+of detail in deciding what we mean by \lq{}for $n$ approaching
+infinity\rq{}. The proof itself involves some messing about with the
+moment generating theorem and isn't too hard. It isn't particularly
+revealing though; it misses what is happening, which is roughly this:
+the central limit theorem is a bit like the binomial distribution,
+just like the binomial distribution quantifies the different ways to
+get different numbers of $S$, the central limit theorem quantifies
+different ways of getting the same sum. In fact, numerically, the Gau\ss{}ian
+distribution is close to the binomial distribution, see for example Fig.~\ref{fig_binomial}.
+
+
+\begin{figure}[tb]
+\begin{center}
+\include{binomial}
+\end{center}
+\caption{This compares the binomial distribution with $n=30$ and
+  $p=0.25$ with the  Gau\ss{}ian distribution with the same mean and variance.\label{fig_binomial}}
+\end{figure}
+
+
+The central limit theorem is important in two ways. First off, it
+tells us how the sample mean behaves; since we often estimate means by
+doing multiple independent trials this is useful. The second point is
+vaguer, although we have stated the central limit theorem in terms of
+i.i.d. variables and this is the case where it is easy to state and
+prove the theorem, there is a more general phenomena, which is that if
+you add independent variables, even if they are not identical, then
+the result is a Gau\ss{}ian. This is why so many things show
+Gau\ss{}ian distributions. Think, for example, of the height of trees,
+lots of things contribute to the height of a tree, how wet and sunny
+the location it is growing in, the soil, the genetics of each
+individual. These individual contributions probably aren't
+Gau\ss{}ian, they aren't identical and, in fact, probably don't
+contribute in a linear way to the height, nonetheless we would expect
+the result, the height of the trees to be Gau\ss{}ian. It is a
+fortunate aspect of statistics, things that are complicated and have
+multiple contributing factors, tend to behave in a simple way from the
+point-of-view of statistics.
+
+\include{summary}
+
+\end{document}
+
+
+
+
