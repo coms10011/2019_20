@@ -23,7 +23,7 @@
 \lhead{COMS100011 9\_central\_limit\_theorem - Conor}
 \begin{document}
 
-\section*{10 The Central Limit Theorem}
+\section*{9 The Central Limit Theorem}
 
 \subsection*{The sum of two random variables}
 
@@ -71,18 +71,12 @@ p_Z(z)=\left\{\begin{array}{ll} z&z\in [0,1]\\2-z& z\in [1,2]\\0&\mbox{otherwise
 
 Next lets consider the sum of two Gau\ss{}ians, $X\sim
 \mathcal{N}(\mu_x,\sigma_x^2)$ and $Y\sim
-\mathcal{N}(\mu_Y,\sigma_Y^2)$. Recall that we know the moment generating map for the Gaussian and
-\begin{eqnarray}
-m_X(t)&=&e^{\mu_X t+\frac{1}{2}\sigma_X^2t^2}\cr
-m_Y(t)&=&e^{\mu_Y t+\frac{1}{2}\sigma_Y^2t^2}
-\end{eqnarray}
-so if $Z=X+Y$, using the formula above for the moment generating map
-of a sum
+\mathcal{N}(\mu_Y,\sigma_Y^2)$. Calculating the distribution of $Z=X+Y$ would be difficult since it involves the integral
 \begin{equation}
-m_Z(t)=e^{\mu_X t+\frac{1}{2}\sigma_X^2t^2}e^{\mu_Y t+\frac{1}{2}\sigma_Y^2t^2}
-=e^{(\mu_x+\mu_Y)t+\frac{1}{2}(\sigma_X^2+\sigma_Y^2)t^2}
+p_Z(z)=\frac{1}{2\pi\sigma_X^2\sigma_Y^2}
+\int_{-\infty}^\infty e^{-(x-\mu_X)^2/2\sigma_X^2-(z-x-\mu_Y)^2/2\sigma_Y^2}dx
 \end{equation}
-Hence
+We aren't going to attempt that, but we will quote the result: the sum is also a Gau\ss{}ian:
 \begin{equation}
 Z\sim \mathcal{N}(\mu_X+\mu_Y,\sigma_X^2+\sigma_Y^2)
 \end{equation}
@@ -119,13 +113,15 @@ see that it very quickly comes to resemble a Gau\ss{}ian distribution.
 We won't prove the central limit theorem here, doing so involves a bit
 of detail in deciding what we mean by \lq{}for $n$ approaching
 infinity\rq{}. The proof itself involves some messing about with the
-moment generating theorem and isn't too hard. It isn't particularly
-revealing though; it misses what is happening, which is roughly this:
-the central limit theorem is a bit like the binomial distribution,
-just like the binomial distribution quantifies the different ways to
-get different numbers of $S$, the central limit theorem quantifies
-different ways of getting the same sum. In fact, numerically, the Gau\ss{}ian
-distribution is close to the binomial distribution, see for example Fig.~\ref{fig_binomial}.
+moment generating theorem which we haven't studied, but otherwise
+isn't too hard. It isn't particularly revealing though; it misses what
+is happening, which is roughly this: the central limit theorem is a
+bit like the binomial distribution, just like the binomial
+distribution quantifies the different ways to get different numbers of
+$S$, the central limit theorem quantifies different ways of getting
+the same sum. In fact, numerically, the Gau\ss{}ian distribution is
+close to the binomial distribution, see for example
+Fig.~\ref{fig_binomial}.
 
 
 \begin{figure}[tb]
