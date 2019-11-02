@@ -1,0 +1,24 @@
+
+\ifind
+\section*{Example question}
+\else
+\subsection*{8 guass distribution - example question}
+\fi
+
+The speed of cars on a motorway are randomly distributed with mean 90
+km/hr and standard deviation 10 km/hr. What fraction of cars are
+travalling faster than 100 km/hr.
+
+
+\noindent \textbf{solution} So we want
+\begin{equation}
+P(x>100)=\frac{1}{\sqrt{2\pi\sigma^2}}\int_{100}^\infty e^{-(x-\mu)^2/2\sigma^2}dx 
+\end{equation}
+where $\mu=90$ and $\sigma=10$. We do a change of variables to
+\begin{equation}
+z=\frac{x-90}{\sqrt{2}\sigma}
+\end{equation}
+so
+\begin{equation}
+P(x>100)=\frac{1}{\pi}\int_{1/\sqrt{2}}^{\infty}e^{-z^2}dz=\frac{1}{2}\left[1-\mbox{erf}\left({\frac{1}{\sqrt{2}}}\right)\right]
+\end{equation}
