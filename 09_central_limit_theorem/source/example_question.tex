@@ -1,0 +1,31 @@
+
+\ifind
+\section*{Example question}
+\else
+\subsection*{8 guass distribution - example question}
+\fi
+
+The random variable $X$ is uniformly distributed over the interval $[0,1]$ and $Y$ is uniformly distributed over the interval $[-1,0]$ what is the distribution of $Z=X+Y$?
+
+
+\noindent \textbf{solution} So we want
+\begin{equation}
+p_Z(z)=\int_{-\infty}^\infty p_X(x)p_Y(z-x)dx
+\end{equation}
+So $x$ must lie in the interval $[0,1]$ for $p_X(x)$ to be non-zero, but in that case it is one, so we have
+\begin{equation}
+p_Z(z)=\int_0^1 p_Y(z-x)dx
+\end{equation}
+Now $p_Y(z-x)$ is only non-zero if $-1<z-x<0$ hence if $z<-1$ or $z>1$
+then it is zero for all $x\in [0,1]$. If $z\in[-1,0]$ then $z-x\in
+[-1,0]$ for $x\in[0,1+z]$ and if $z\in [0,1]$ then $z-x\in[-1,0]$ for
+$x\in [z,1]$. Putting that together gives
+\begin{equation}
+p_Z(z)=\left\{\begin{array}{cl}
+0&z<-1\\
+1+z&z\in[-1,0)\\
+1-z&z\in[0,1)\\
+0&z\ge 1
+\end{array}
+\right.
+\end{equation}

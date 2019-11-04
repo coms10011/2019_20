@@ -1,0 +1,44 @@
+
+\ifind
+\section*{Example question}
+\else
+\subsection*{5 binomial distribution - example question}
+\fi
+Show the variance of the binomial distribution is $npq$.
+
+\noindent \textbf{solution}
+This is a hard question. As ever we start with
+\begin{equation}
+1=Z=\sum{r=0}^n \left(\begin{array}{c} n\\r\end{array}\right) p^rq^{n-r}
+\end{equation}
+and we take the second derivative
+\begin{eqnarray}
+\frac{d^2Z}{dp^2}&=&\sum_{r=0}^n \left(\begin{array}{c} n\\r\end{array}\right) r(r-1)p^{r-2}q^{n-r}-2\sum_{r=0}^n \left(\begin{array}{c} n\\r\end{array}\right) r(n-r)p^{r-1}q^{n-r-1}\cr&&+\sum_{r=0}^n \left(\begin{array}{c} n\\r\end{array}\right)(n-r)(n-r-1) p^rq^{n-r-2}
+\end{eqnarray}
+so
+\begin{equation}
+0=\sum_{r=0}^n\left[\frac{1}{p^2}(r^2-r)-\frac{2}{pq}(rn-r^2)+\frac{1}{q^2}(n^2-2nr-n+r^2+r)\right]\left(\begin{array}{c} n\\r\end{array}\right) p^rq^{n-r}
+\end{equation}
+or, using $\langle R\rangle = np$,
+\begin{equation}
+0=\frac{1}{p^2}\langle R^2\rangle - \frac{1}{p^2}np-\frac{2n}{pq}np+\frac{2}{pq}\langle R^2\rangle +(n^2-n)\frac{1}{q^2}-(2n-1)\frac{1}{q^2}np+\frac{1}{q^2}\langle R^2\rangle
+\end{equation}
+Putting this together we get
+\begin{equation}
+0=\left(\frac{1}{p}+\frac{1}{q}\right)^2\langle R^2\rangle - \frac{n}{p}-\frac{2n^2}{q}+ \frac{n^2-n}{q^2}-\frac{(2n^2-n)p}{q^2}
+\end{equation}
+Simplifying we get
+\begin{equation}
+0=\frac{\langle R^2\rangle}{p^2q^2}-\frac{n^2}{q^2}-\frac{n}{p}-\frac{n}{q}
+\end{equation}
+so
+\begin{equation}
+\langle R^2\rangle=n^2p^2+npq
+\end{equation}
+and finally
+\begin{equation}
+\sigma^2=\langle R^2\rangle-\langle R\rangle^2=npq
+\end{equation}
+
+
+

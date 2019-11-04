@@ -1,0 +1,37 @@
+\ifind
+\section*{Summary}
+\else
+\subsection*{10 Central Limit Theorem}
+\fi
+
+\begin{itemize}
+\item If $X$ and $Y$ are continuous random variables, with density
+functions $p_X(x)$ and $p_Y(y)$ and 
+\begin{equation}
+Z=X+Y
+\end{equation}
+then
+\begin{equation}
+p_Z(z)=\int_{-\infty}^\infty {p_X(x)p_Y(z-x)dx}
+\end{equation}
+This calculation is called a \textbf{convolution}.
+
+\item If  $X\sim\mathcal{N}(\mu_x,\sigma_x^2)$ and $Y\sim\mathcal{N}(\mu_Y,\sigma_Y^2)$ then
+  \begin{equation}
+X+Y=Z\sim \mathcal{N}(\mu_X+\mu_Y,\sigma_X^2+\sigma_Y^2)
+  \end{equation}
+
+\item Let $\{X_1,X_2,\ldots,X_n\}$ be a set of random variables. A set of
+random variables is called \textbf{independent identically distributed},
+usually abbreviated to i.i.d., if the variables all have the same
+probability density, say $p_X(x)$ and are independent.
+  
+\item The \textbf{Central limit theorem}: if  $\{X_1,X_2,\ldots,X_n\}$ is i.i,d, the \textbf{sample mean} is
+  \begin{equation}
+S_n=\frac{X_1+X_2+\ldots+X_n}{n}
+\end{equation}
+  As $n$ approaches infinity
+\begin{equation}
+U_n=\sqrt{n}\left(\frac{S_n-\mu}{\sigma}\right) \sim \mathcal{N}(0,1)
+\end{equation}
+\end{itemize}

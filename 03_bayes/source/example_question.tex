@@ -1,0 +1,33 @@
+
+\ifind
+\section*{Example question}
+\else
+\subsection*{3 bayes - example question}
+\fi In the novel \textit{Swallows and Amazons} the children write to
+their father asking permission to sail out to an island to camp, he famously replies by telegram
+\begin{quote}
+  BETTER DROWNED THAN DUFFERS IF NOT DUFFERS WON'T DROWN
+\end{quote}
+`duffers' is old-fashioned posh-English slang for a fool chiefly
+remembered because of its appearance in this quote. The father, as
+befits an old-fashioned Edwardian-style\footnote{In fact the novel
+  takes place in 1929 so he's not actually Edwardian} paterfamilis does not
+express himself in terms of probabilities, but imagine a duffer has a
+one in five chance of drowning and a non-duffer a one in fifty,
+imagine also that one person in four is a duffer. If a child survives
+the trip what is the chance they are nonetheless a duffer?
+
+\noindent \textbf{solution} We are interested in
+\begin{equation}
+  P(\mbox{duffer}|\mbox{not drowned})=\frac{P(\mbox{not drowned}|\mbox{duffer})P(\mbox{duffer})}{P(\mbox{not drowned})}
+\end{equation}
+Now $P(\mbox{not drowned}|\mbox{duffer})=0.8$ and $P(\mbox{duffer})=0.25$, working out $P(\mbox{not drowned})$ takes more work:
+\begin{eqnarray}
+  P(\mbox{not drowned})&=&P(\mbox{not drowned}|\mbox{duffer})P(\mbox{duffer})\cr&& +P(\mbox{not drowned}|\mbox{not duffer})P(\mbox{not duffer})\cr &=&0.8\times 0.25+0.98\times 0.75=0.935
+\end{eqnarray}
+and hence
+\begin{equation}
+  P(\mbox{duffer}|\mbox{not drowned})=\frac{0.8\times 0.25}{0.935}\approx 0.214
+\end{equation}
+so if a child survives their summer camping trip, there is still a
+good chance they are duffer.

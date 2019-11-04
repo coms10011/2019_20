@@ -1,0 +1,24 @@
+
+\ifind
+\section*{Example question}
+\else
+\subsection*{7 continuous distribution - example question}
+\fi
+The Kumaraswamy distribution is a continuous probability density with
+support on $[0,1]$; this means its probability density is zero except
+when $x\in [0,1]$. It has two parameters $a$ and $b$, both positive
+and the probability density is
+\begin{equation}
+p(x)=abx^{a-1}(1-x^a)^{b-1}
+\end{equation}
+For $a=b=1$ it reduces to the uniform distribution. Its mean and
+variance are surprisingly tricky to calculate, but its cumulative isn't. Calculate its cumulative.
+
+\noindent \textbf{solution} Well for $x\in[0,1]$ the cumulative is
+\begin{equation}
+F(x)=\int_0^x p(y)dy=\int_0^x aby^{a-1}(1-y^a)^{b-1}dy 
+\end{equation}
+and this can be done using the substitution $u=1-y^a$ so that $du=-ay^{a-1}$ giving
+\begin{equation}
+F(x)=-\int_1^{1-x^a} bu^{b-1}du=-u^b|_1^{1-x^a}=1-(1-x^a)^b 
+\end{equation}
