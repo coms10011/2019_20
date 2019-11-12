@@ -1,0 +1,97 @@
+%ps3.tex
+%notes for the course Probability and Statistics COMS10011 
+%taught at the University of Bristol
+%2018_19 Conor Houghton conor.houghton@bristol.ac.uk
+
+%To the extent possible under law, the author has dedicated all copyright 
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{\texttt{github.com/COMS10011/2018\_19}}
+\lhead{COMS10007 ps3 - Conor / Anne - outline solutions}
+\begin{document}
+
+\section*{Problem Sheet 3}
+
+
+
+\subsection*{Questions}
+
+\begin{enumerate}
+
+\item The size of a standard croquet ball is 3 5/8
+  inches\footnote{Everything in croquet is measured in old timey
+    units}. The height of a croquet hoop is 3 3/4 inches. If a not
+  very good croquet-ball making machine makes croquet balls whose mean
+  matches the standard and with standard deviation 1/8 inch, what is
+  the chance it will make a ball too large to fit through the
+  hoop. You can write the solution in terms of the error function.
+  \\ \\ \\ \textbf{Solution}: So
+\begin{equation}
+z=\frac{x-\mu}{\sqrt{2}\sigma}
+\end{equation}
+so for $x_1=3.75$ in, we have
+\begin{equation}
+z_1=\frac{1/8}{\sqrt{2}/8}=\frac{1}{\sqrt{2}}
+\end{equation}
+Any height bigger than this will not fit, so $z_2=\infty$ and $\mbox{erf}{\infty}=1$ so
+\begin{equation}
+\mbox{Prob}(x>3.75)=\frac{1}{2}[1-\mbox{erf}(1/\sqrt{2})]\approx 0.16
+\end{equation}
+where the 0.16 is given for interest, it wasn't expected as part of the answer.
+
+\item This will look like a long question but it is almsot all
+  background and the question is not too bad when you actually read
+  through it. In particle physics when a collider is being used to
+  find a new particle like the Higgs boson or the top squark
+  scientists don't detect the sought after particle directly since it
+  usually decays almost straight away, instead they detect the more
+  common particles that particle will decay into, for example, a Higgs
+  boson can decay in to two photons and these can be detected. Roughly
+  speaking scientists count these events. However, the whole situation
+  is very messy and there will always be some events even if the
+  particle doesn't exist at the energy being examined. The amount of
+  these background events will fluctuate from experiment to
+  experiment, typically like a Gau\ss{}ian. The scientific team is
+  allowed to claim they have discovered the particle if the number of
+  events they measure is more than five standard deviations above
+  what would be expected if the particle didn't exist. What is the
+  probability of this \lq{}discovery\rq{} happening by chance?
+  \\ \\ \\ \textbf{Solution}: So we are interested in the probability of a results bigger than $\mu+5\sigma$. Now
+\begin{equation}
+z_1=\frac{\mu+5\sigma-\mu}{\sqrt{2}\sigma}=\frac{5}{\sqrt{2}}
+\end{equation}
+and
+\begin{equation}
+\mbox{Prob}(x>\mu+5\sigma)=\frac{1}{2}[1-\mbox{erf}(5/\sqrt(2))]
+\end{equation}
+which is about one chance in 3.5 million.
+
+\end{enumerate}
+
+\subsection*{Extra question}
+
+\begin{itemize}
+\item Another useful distribution is the exponential distribution:
+$$
+p(x)=\left\{\begin{array}{cc}\lambda e^{-\lambda x}& x\ge 0\\ 0&\mbox{otherwise}\end{array}\right.
+$$
+What is the probability $\mbox{Prob}(x_1 < x <x_2)$ where $x_1$ and $x_2$ are both positive.
+  \\ \\ \\ \textbf{Solution}: 
+\begin{equation}
+\mbox{Prob}(x_1 < x <x_2)=\lambda \int_{x_1}^{x_2} e^{-\lambda y}dy=\left. e^{-\lambda y} \right]_{x_1}^{x_2}=e^{-\lambda x_1}-e^{-\lambda x_2}
+\end{equation}
+\end{itemize}
+
+
+\end{document}
+
