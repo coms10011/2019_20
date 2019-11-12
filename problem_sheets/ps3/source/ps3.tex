@@ -1,0 +1,108 @@
+%ps3.tex
+%notes for the course Probability and Statistics COMS10011 
+%taught at the University of Bristol
+%2018_19 Conor Houghton conor.houghton@bristol.ac.uk
+
+%To the extent possible under law, the author has dedicated all copyright 
+%and related and neighboring rights to these notes to the public domain 
+%worldwide. These notes are distributed without any warranty. 
+
+\documentclass[11pt,a4paper]{scrartcl}
+\typearea{12}
+\usepackage{graphicx}
+%\usepackage{pstricks}
+\usepackage{listings}
+\usepackage{color}
+\lstset{language=C}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{\texttt{github.com/COMS10011/2018\_19}}
+\lhead{COMS10007 ps3 - Conor}
+\begin{document}
+
+\section*{Problem Sheet 3}
+
+There are two questions from Conor and two from Anne; Anne's question come after the \lq{}additional problem\rq{} from Conor's part of the problem sheet.
+
+\subsection*{Useful facts}
+
+\begin{itemize}
+
+\item \textbf{The Gau\ss{}ian distribution}:
+$$
+p(x)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}
+$$
+
+\item Working out \textbf{probabilities for the Gau\ss{}ian}:
+$$
+\mbox{Prob}(x_1<x<x_2)=\frac{1}{2}[\mbox{erf}\,(z_2)-\mbox{erf}\,(z_1)]
+$$
+where
+$$
+z=\frac{x-\mu}{\sqrt{2}\sigma}
+$$
+The error function 
+$$\mbox{erf}\,(z)=\frac{1}{\sqrt{\pi}}\int_{-z}^ze^{-y^2}dy=\frac{2}{\sqrt{\pi}}\int_0^ze^{-y^2}dy$$ 
+goes from -1 to one, so $\mbox{erf}\,(-\infty)=-1$ and $\mbox{erf}\,(\infty)=1$.
+
+\item The \textbf{sum of two random variables} $Z=X+Y$ has a probability given by the convolution:
+  $$
+  p_Z(z)=\int_{-\infty}^\infty p_X(x)p_Y(z-x)dx
+  $$
+
+\end{itemize}
+
+
+\subsection*{Questions}
+
+\begin{enumerate}
+
+\item The size of a standard croquet ball is 3 5/8
+  inches\footnote{Everything in croquet is measured in old timey
+    units}. The height of a croquet hoop is 3 3/4 inches. If a not
+  very good croquet-ball making machine makes croquet balls whose mean
+  matches the standard and with standard deviation 1/8 inch, what is
+  the chance it will make a ball too large to fit through the hoop?
+  You can write the solution in terms of the error function.
+
+\item This will look like a long question but it is almost all
+  background and the question is not too bad when you actually read
+  through it. In particle physics when a collider is being used to
+  find a new particle like the Higgs boson or the top squark
+  scientists don't detect the sought after particle directly since it
+  usually decays almost straight away, instead they detect the more
+  common particles that particle will decay into, for example, a Higgs
+  boson can decay in to two photons and these can be detected. Roughly
+  speaking scientists count these events. However, the whole situation
+  is very messy and there will always be some events even if the
+  particle doesn't exist at the energy being examined. The amount of
+  these background events will fluctuate from experiment to
+  experiment, typically like a Gau\ss{}ian. The scientific team is
+  allowed to claim they have discovered the particle if the number of
+  events they measure is more than five standard deviations above
+  what would be expected if the particle didn't exist. What is the
+  probability of this \lq{}discovery\rq{} happening by chance?
+
+
+
+\end{enumerate}
+
+\subsection*{Extra questions}
+
+\begin{itemize}
+
+\item The Dirac delta function $\delta(x)$ is a special function that is zero everywhere but when $x=0$, but
+$$
+    \int_{-\infty}^\infty\delta(x)dx=1
+$$
+  You can think of it as the $a\rightarrow 0$ limit of the uniform distribution with support $[-a,a]$. If the random variable $X$ has $p(x)=\delta(x-1)$ it means $X=1$. If $Y$ is uniformely distributed from zero to two, what is the distribution for $Z=X+Y$?
+  
+\item Australorp hens weigh on average 4kg with a standard deviation
+  0.25kg; australorps who weight less than 3.5kg are fed
+  \textsl{patent chicken spicer}, a mixture of chalk, corn and
+  pepper. What fraction of these hens are fed patent chicken spicer?
+
+\end{itemize}
+  
+\end{document}
+
