@@ -49,7 +49,7 @@ Any height bigger than this will not fit, so $z_2=\infty$ and $\mbox{erf}{\infty
 \end{equation}
 where the 0.16 is given for interest, it wasn't expected as part of the answer.
 
-\item This will look like a long question but it is almsot all
+\item This will look like a long question but it is almost all
   background and the question is not too bad when you actually read
   through it. In particle physics when a collider is being used to
   find a new particle like the Higgs boson or the top squark
@@ -91,6 +91,41 @@ What is the probability $\mbox{Prob}(x_1 < x <x_2)$ where $x_1$ and $x_2$ are bo
 \mbox{Prob}(x_1 < x <x_2)=\lambda \int_{x_1}^{x_2} e^{-\lambda y}dy=\left. e^{-\lambda y} \right]_{x_1}^{x_2}=e^{-\lambda x_1}-e^{-\lambda x_2}
 \end{equation}
 \end{itemize}
+
+
+
+\subsection*{Extra questions}
+
+\begin{itemize}
+
+\item The Dirac delta function $\delta(x)$ is a special function that is zero everywhere but when $x=0$, but
+$$
+    \int_{-\infty}^\infty\delta(x)dx=1
+    $$
+Integrating by parts or similar shows that this means
+$$
+    \int_{-\infty}^\infty\delta(x)f(x)dx=f(0)
+    $$
+You can think of it as the $a\rightarrow 0$ limit of the uniform distribution with support $[-a,a]$. If the random variable $X$ has $p(x)=\delta(x-1)$ it means $X=1$. If $Y$ is uniformely distributed from zero to two, what is the distribution for $Z=X+Y$?
+\\ \\ \\ \textbf{Solution}: So we know
+$$p_Z(z)=\int_{-\infty}\infty \delta(x-1)p_Y(z-x)dx=p_Y(z-1)$$
+so $Z$ is uniformly distributed over the interval $[1,3]$.
+
+\item Australorp hens weigh on average 4kg with a standard deviation
+  0.25kg; australorps who weight less than 3.5kg are fed
+  \textsl{patent chicken spicer}, a mixture of chalk, corn and
+  pepper. What fraction of these hens are fed patent chicken spicer?
+  \\ \\ \\ \textbf{Solution}: Here is a picture of one of my hens, an Australorp, being fed a raspberry.
+  \begin{center}
+    \includegraphics[width=6cm]{hen.jpg}
+  \end{center}
+  So we are asking for $P(x<3.5)$ and since
+  $$z=\frac{3.5-4}{0.25\sqrt{2}}=\sqrt{2}$$
+    the probability, and hence the proportion, is
+    $$P(x<3.5)=\frac{1}{2}[1-\mbox{erf}\,(\sqrt{2})]\approx 0.02275$$
+  
+\end{itemize}
+
 
 
 \end{document}
