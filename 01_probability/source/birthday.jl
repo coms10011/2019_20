@@ -15,5 +15,5 @@ n=1
 
 while n<60
     println(n," ",probability(n))
-    n+=1
+    global n+=1
 end
