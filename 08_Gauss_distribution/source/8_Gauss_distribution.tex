@@ -70,7 +70,7 @@ confusing thing is the $1/\sqrt{2\pi\sigma^2}$, that is there to normalize the c
 This is confusing because we can do this particular definite integral
 going from minus infinity to infinity, but the corresponding
 indefinite integral can't be done in the sense that we can't write
-down a formula in terms of functions we already know. There is a trick
+down a formula in terms of a set of functions we already know. There is a trick
 for doing the definite integral from minus infinity to infinity which
 we won't look at here for reasons of time but is very nice if you want
 to look it up. Of course, since the integral goes from minus infinity
@@ -78,11 +78,7 @@ to infinity shifting the $x$ around doesn't change the value:
 \begin{equation}
 \int_{-\infty}^\infty e^{-(x-\mu)^2/2\sigma^2}dx=\sqrt{2\pi\sigma^2}
 \end{equation}
-where $\mu$ is a constant.
-
-Surprisingly it is easier to calculate the moment generating function
-than it is to calculate the mean and variance directly; we will do
-this soon; we will see that the mean is $\mu$ and the variance
+where $\mu$ is a constant. We will see that the mean is $\mu$ and the variance
 $\sigma^2$, just as we'd hope, that's why these particular symbols
 were used in the formula for the density.
 
@@ -195,7 +191,7 @@ we have
 
 \subsection*{Example}
 
-The loudness of songs at a concert are normally distributed\footnote{The is an inclindation to guess everything is normally distributed, in fact, this seems unlikely in this case, decibels are on a log scale}  with mean 75 dB and standard deviation $\sigma=10 dB$. What is the probability that the next song has loudness between 80 and 90 dB? Well
+The loudness of songs at a concert are normally distributed\footnote{There is an inclindation to guess everything is normally distributed. In fact, this seems unlikely in this case, decibels are on a log scale}  with mean 75 dB and standard deviation $\sigma=10 dB$. What is the probability that the next song has loudness between 80 and 90 dB? Well
 \begin{equation}
 \mbox{Prob}(80<x<90)=\frac{1}{2}[\mbox{erf}\,(z_2)-\mbox{erf}\,(z_1)]
 \end{equation}

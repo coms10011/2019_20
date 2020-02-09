@@ -32,11 +32,11 @@ three sixes? There are three parts to working out the
 probability. First consider the chance of getting three sixes in the
 first three rolls. This is $(1/6)^3$. Next consider the change of
 getting not-a-six in the next two rolls. This is $(5/6)^2$. Finally,
-we are interested, not in getting three sixes followed by two
-not-sixes, we are interested in getting exactly three sixes out of
-five rolls, so we also need to count the number of ways of choosing
-which three of the five rolls gives a six. Putting all this together
-and using $R$ to denote the number of sixes
+we are not just interested in getting three sixes followed by two
+not-sixes: we want to count all the ways to get exactly three sixes
+out of five rolls. This means we also need to count the number of ways
+of choosing which three of the five rolls gives a six. Putting all
+this together and using $R$ to denote the number of sixes
 \begin{equation}
 p(R=3)=\left(\begin{array}{c}5\\3\end{array}\right)\left(\frac{1}{6}\right)^3\left(\frac{5}{6}\right)^2=0.032
 \end{equation}
